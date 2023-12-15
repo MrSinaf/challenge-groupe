@@ -1,11 +1,11 @@
-import './App.css'
-import React, {useState} from 'react';
+import ShowList, {CalculeTotal} from "./components/showList.jsx";
 import ExpenseForm from './components/F1/form';
-import ShowList from "./components/showList.jsx";
+import {useState} from 'react';
+import './App.css'
 import { categories } from './components/F1/form';
 
 function App() {
-    const [spents, setSpents] = useState([{spent: 15, category: "Miam"}]);
+    const [spents, setSpents] = useState([]);
     const [filtre, setFiltre] = useState("All");
 
     const handleNewExpense = (expenseData) => {
@@ -31,7 +31,8 @@ function App() {
                     </select>
                     </div>
             </div>
-            <ShowList spents={spents} categoryFiltre={filtre}/>
+            <ShowList spents={spents} filtre={filtre}/>
+            <CalculeTotal spents={spents} filtre={filtre}/>
         </>
     )
 }
