@@ -16,7 +16,7 @@ function ExpenseForm({ onAddExpense }) {
     event.preventDefault();
 
     const expenseData = {
-      amount: parseFloat(enteredAmount),
+      spent: parseFloat(enteredAmount),
       category: selectedCategory
     };
 

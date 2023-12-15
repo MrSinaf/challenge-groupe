@@ -1,19 +1,25 @@
 import './App.css'
 import React from 'react';
-import ExpenseForm from './component/F1/form';
+import ExpenseForm from './components/F1/form';
+import ShowList from "./components/showList.jsx";
 
 function App() {
-  const handleNewExpense = (expenseData) => {
-    console.log('Nouvelle dépense ajoutée:', expenseData);
-    // Ici, vous pouvez ajouter une logique supplémentaire si nécessaire
-  };
+    const spents = [{spent: 15, category: "miam"}];
+    let filtre = "Total";
 
-  return (
-    <div>
-      <ExpenseForm onAddExpense={handleNewExpense} />
-    </div>
-  );
+    const handleNewExpense = (expenseData) => {
+        console.log('Nouvelle dépense ajoutée:', expenseData);
+        spents.push(expenseData)
+    };
+
+    return (
+        <>
+            <div>
+                <ExpenseForm onAddExpense={handleNewExpense}/>
+            </div>
+            <ShowList spents={spents} categoryFiltre={filtre}/>
+        </>
+    )
 }
 
-export default App;
-
+export default App
