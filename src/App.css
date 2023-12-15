@@ -65,49 +65,41 @@ textarea {
 .expense-display {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     padding: 20px;
-    height: auto;
+    height: 300px;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     background-color: #2a2a2a;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .spend-card {
     color: #fff;
     background-color: #333;
     border-left: #5a5cfa 5px solid;
-    padding: 15px;
-    margin: 10px 0;
+    padding: 10px;
+    margin: 8px 0; 
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: all .2s;
+    max-width: 100%;
 }
 
 .spend-card p {
-    margin: 5px 0;
-    font-size: 1rem;
-    line-height: 1.5;
+    margin: 3px 0; 
+    font-size: 0.9rem; 
+    line-height: 1.2; 
     word-wrap: break-word;
 }
 
 .spend-card .category {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #747bff;
+    font-size: 1.2rem;
 }
 
-.spend-card .price {
-    background: rgba(0, 0, 0, 0.43);
-    border-radius: 15px;
-}
-
+.spend-card .price,
 .spend-card .description {
-    font-size: .9rem;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
+    font-size: 0.8rem;
 }
-
 .spend-card:hover {
     background-color: #1a1a1a;
 }

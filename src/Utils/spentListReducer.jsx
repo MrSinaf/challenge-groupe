@@ -7,7 +7,7 @@ export const initialState = {
 function Reducer(state, action) {
     switch (action.type) {
         case 'AddSpent':
-            return {...state, spents: [...state.spents, action.payload]};
+            return {...state, spents: [action.payload, ...state.spents]};
         case 'ChangeFilter':
             return {...state, filter: action.payload};
         case 'CalculateTotal':
