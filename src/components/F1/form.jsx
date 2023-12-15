@@ -31,27 +31,34 @@ function ExpenseForm({ onAddExpense }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="amount">Montant:</label>
-        <input
-          type="number"
-          id="amount"
-          value={enteredAmount}
-          onChange={handleAmountChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="category">Catégorie:</label>
-        <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
-          <option value="">Choisir une catégorie</option>
-          {categories.map(category => (
-            <option key={category} value={category}>{category}</option>
-          ))}
-        </select>
-      </div>
-      <button type="submit">Ajouter</button>
+        <div>
+            <label htmlFor="amount">Montant:</label>
+            <input
+                type="number"
+                id="amount"
+                value={enteredAmount}
+                onChange={handleAmountChange}
+                required  // Assurez-vous que le montant est obligatoire
+            />
+        </div>
+        <div>
+            <label htmlFor="category">Catégorie:</label>
+            <select 
+                id="category" 
+                value={selectedCategory} 
+                onChange={handleCategoryChange}
+                required  // Rend la sélection d'une catégorie obligatoire
+            >
+                <option value="">Choisir une catégorie</option>
+                {categories.map(category => (
+                    <option key={category} value={category}>{category}</option>
+                ))}
+            </select>
+        </div>
+        <button type="submit">Ajouter</button>
     </form>
-  );
+);
+
 }
 
 export default ExpenseForm;
