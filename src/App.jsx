@@ -1,15 +1,14 @@
 import './App.css'
-import React from 'react';
+import React, {useState} from 'react';
 import ExpenseForm from './components/F1/form';
 import ShowList from "./components/showList.jsx";
 
 function App() {
-    const spents = [{spent: 15, category: "miam"}];
-    let filtre = "Total";
+    const [spents, setSpents] = useState([{spent: 15, category: "Miam"}]);
+    const [filtre, setFiltre] = useState("All");
 
     const handleNewExpense = (expenseData) => {
-        console.log('Nouvelle dépense ajoutée:', expenseData);
-        spents.push(expenseData)
+        setSpents(prevSpents => [...prevSpents, expenseData]);
     };
 
     return (
@@ -22,4 +21,4 @@ function App() {
     )
 }
 
-export default App
+export default App;
