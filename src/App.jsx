@@ -11,11 +11,14 @@ function App() {
 
     return (
         <>
-            <div>
-                <ExpenseForm onAddExpense={expenseData => dispatch({type: 'AddSpent', payload: expenseData})}/>
-                <div>
+            <div className="form-container">
+                <div className="input-group">
+                    <ExpenseForm onAddExpense={expenseData => dispatch({type: 'AddSpent', payload: expenseData})}/>
+                </div>
+                <div className="filter-category">
                     <label htmlFor="categoryFilter">Filtrer par catégorie:</label>
-                    <select id="categoryFilter" value={state.filter} onChange={event => dispatch({type: 'ChangeFilter', payload: event.target.value})}>
+                    <select id="categoryFilter" value={state.filter}
+                            onChange={event => dispatch({type: 'ChangeFilter', payload: event.target.value})}>
                         <option value="All">Toutes</option>
                         {categories.map(category => (
                             <option key={category} value={category}>{category}</option>
@@ -23,7 +26,9 @@ function App() {
                     </select>
                 </div>
             </div>
-            <ShowList state={state}/>
+            <div className="form-row">
+                <ShowList state={state}/>
+            </div>
             <p>Total : {state.total}€</p>
         </>
     )

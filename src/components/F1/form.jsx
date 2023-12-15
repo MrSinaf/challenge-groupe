@@ -5,6 +5,13 @@ import React, { useState } from 'react';
 function ExpenseForm({ onAddExpense }) {
   const [enteredAmount, setEnteredAmount] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [enteredDescription, setEnteredDescription] = useState('');
+
+const handleDescriptionChange = (event) => {
+    setEnteredDescription(event.target.value);
+};
+
+  
 
   const handleAmountChange = (event) => {
     setEnteredAmount(event.target.value);
@@ -19,7 +26,8 @@ function ExpenseForm({ onAddExpense }) {
 
     const expenseData = {
       spent: parseFloat(enteredAmount),
-      category: selectedCategory
+      category: selectedCategory,
+      description: enteredDescription
     };
 
     onAddExpense(expenseData);
@@ -27,36 +35,56 @@ function ExpenseForm({ onAddExpense }) {
     // Reset the form
     setEnteredAmount('');
     setSelectedCategory('');
+    setEnteredDescription('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-        <div>
-            <label htmlFor="amount">Montant:</label>
-            <input
-                type="number"
-                id="amount"
-                value={enteredAmount}
-                onChange={handleAmountChange}
-                required  // Assurez-vous que le montant est obligatoire
-            />
-        </div>
-        <div>
-            <label htmlFor="category">Catégorie:</label>
-            <select 
-                id="category" 
-                value={selectedCategory} 
-                onChange={handleCategoryChange}
-                required  // Rend la sélection d'une catégorie obligatoire
-            >
-                <option value="">Choisir une catégorie</option>
-                {categories.map(category => (
-                    <option key={category} value={category}>{category}</option>
-                ))}
-            </select>
-        </div>
-        <button type="submit">Ajouter</button>
-    </form>
+    <form onSubmit={handleSubmit} className="form-container">
+  <div className="form-row">
+    <div>
+      <label htmlFor="amount">Montant:</label>
+      <input
+        type="number"
+        id="amount"
+        value={enteredAmount}
+        onChange={handleAmountChange}
+        required
+      />
+    </div>
+    <div>
+      <label htmlFor="category">Catégorie:</label>
+      <select 
+        id="category" 
+        value={selectedCategory} 
+        onChange={handleCategoryChange}
+        required
+      >
+        <option value="">Choisir une catégorie</option>
+        {categories.map(category => (
+          <option key={category} value={category}>{category}</option>
+        ))}
+      </select>
+    </div>
+  </div>
+  
+  <div className="form-row">
+    <div className="button-container">
+      <label htmlFor="description">Description:</label>
+      <textarea
+        id="description"
+        value={enteredDescription}
+        onChange={handleDescriptionChange}
+        required
+        rows="4"
+      ></textarea>
+    </div>
+  </div>
+  
+  <div className="button-container">
+    <button type="submit">Ajouter</button>
+  </div>
+</form>
+
 );
 
 }
