@@ -11,25 +11,22 @@ function App() {
 
     return (
         <>
-            <div className="form-container">
-                <div className="input-group">
-                    <ExpenseForm onAddExpense={expenseData => dispatch({type: 'AddSpent', payload: expenseData})}/>
-                </div>
-                <div className="filter-category">
-                    <label htmlFor="categoryFilter">Filtrer par catégorie:</label>
-                    <select id="categoryFilter" value={state.filter}
-                            onChange={event => dispatch({type: 'ChangeFilter', payload: event.target.value})}>
-                        <option value="All">Toutes</option>
-                        {categories.map(category => (
-                            <option key={category} value={category}>{category}</option>
-                        ))}
-                    </select>
-                </div>
+            <h1>Check Dépense Ez</h1>
+            <ExpenseForm onAddExpense={expenseData => dispatch({type: 'AddSpent', payload: expenseData})}/>
+
+            <div className="filter-category">
+                <label htmlFor="categoryFilter">Filtrer par catégorie:</label>
+                <select id="categoryFilter" value={state.filter}
+                        onChange={event => dispatch({type: 'ChangeFilter', payload: event.target.value})}>
+                    <option value="All">Toutes</option>
+                    {categories.map(category => (
+                        <option key={category} value={category}>{category}</option>
+                    ))}
+                </select>
             </div>
-            <div className="form-row">
+
             <ShowList state={state}/>
-            </div>
-            <p>Total : {state.total} €</p>
+            <p className="Total">Total : {state.total} €</p>
         </>
     )
 }
