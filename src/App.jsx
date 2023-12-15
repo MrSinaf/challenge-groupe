@@ -1,38 +1,30 @@
-import ShowList, {CalculeTotal} from "./components/showList.jsx";
+import ShowList from "./components/showList.jsx";
 import ExpenseForm from './components/F1/form';
-import {useState} from 'react';
+import {useEffect, useReducer} from 'react';
 import './App.css'
-import { categories } from './components/F1/form';
+import {categories} from './components/F1/form';
+import Reducer, {initialState} from "./Utils/spentListReducer.jsx";
 
 function App() {
-    const [spents, setSpents] = useState([]);
-    const [filtre, setFiltre] = useState("All");
-
-    const handleNewExpense = (expenseData) => {
-        setSpents(prevSpents => [...prevSpents, expenseData]);
-    }
-
-
-    const handleFilterChange = (event) => {
-        setFiltre(event.target.value);
-    };
+    const [state, dispatch] = useReducer(Reducer, initialState);
+    useEffect(() => dispatch({type: 'CalculateTotal'}), [state.spents, state.filter])
 
     return (
         <>
             <div>
-  <ExpenseForm onAddExpense={handleNewExpense}/>
+                <ExpenseForm onAddExpense={expenseData => dispatch({type: 'AddSpent', payload: expenseData})}/>
                 <div>
-                <label htmlFor="categoryFilter">Filtrer par catégorie:</label>
-                    <select id="categoryFilter" value={filtre} onChange={handleFilterChange}>
+                    <label htmlFor="categoryFilter">Filtrer par catégorie:</label>
+                    <select id="categoryFilter" value={state.filter} onChange={event => dispatch({type: 'ChangeFilter', payload: event.target.value})}>
                         <option value="All">Toutes</option>
                         {categories.map(category => (
                             <option key={category} value={category}>{category}</option>
                         ))}
                     </select>
-                    </div>
+                </div>
             </div>
-            <ShowList spents={spents} filtre={filtre}/>
-            <CalculeTotal spents={spents} filtre={filtre}/>
+            <ShowList state={state}/>
+            <p>Total : {state.total}€</p>
         </>
     )
 }
