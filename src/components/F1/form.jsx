@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+ export const categories = ["Alimentation", "Logement", "Transport", "Divertissement", "Santé", "Éducation", "Autres"];
+
 function ExpenseForm({ onAddExpense }) {
   const [enteredAmount, setEnteredAmount] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -31,27 +33,20 @@ function ExpenseForm({ onAddExpense }) {
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="amount">Montant:</label>
-        <input 
-          type="number" 
-          id="amount" 
-          value={enteredAmount} 
-          onChange={handleAmountChange} 
+        <input
+          type="number"
+          id="amount"
+          value={enteredAmount}
+          onChange={handleAmountChange}
         />
       </div>
       <div>
         <label htmlFor="category">Catégorie:</label>
-        <select 
-          id="category" 
-          value={selectedCategory} 
-          onChange={handleCategoryChange}>
+        <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
           <option value="">Choisir une catégorie</option>
-          <option value="Alimentation">Alimentation</option>
-          <option value="Logement">Logement</option>
-          <option value="Transport">Transport</option>
-          <option value="Divertissement">Divertissement</option>
-          <option value="Santé">Santé</option>
-          <option value="Éducation">Éducation</option>
-          <option value="Autres">Autres</option>
+          {categories.map(category => (
+            <option key={category} value={category}>{category}</option>
+          ))}
         </select>
       </div>
       <button type="submit">Ajouter</button>
