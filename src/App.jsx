@@ -27,9 +27,9 @@ function App() {
                 </div>
             </div>
             <div className="form-row">
-                <ShowList state={state}/>
+            <ShowList state={state}/>
             </div>
-            <p>Total : {state.total}€</p>
+            <p>Total : {state.total} €</p>
         </>
     )
 }
